@@ -1,23 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   title = 'Example App';
-  users: any;
-  
-  constructor(private http: HttpClient) {}
-  ngOnInit() {
-    this.getUsers();
+  myDate = Date.now();
+
+  public ngOnInit(): void {
+    setInterval(() => {
+      this.myDate = Date.now();
+    }, 1000);
   }
 
-  getUsers(){
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error)
-    })
-  }}
+
+  constructor(private datePipe: DatePipe) {}
+
+
+
+
+
+
+
+
+
+
+
+}
